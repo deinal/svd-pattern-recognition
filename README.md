@@ -1,7 +1,7 @@
 # Pattern recognition using singular value decomposition
 ---
 ### Run in matlab command window: 
-#### >> pattern
+#### >> digitrecog
 ```
 Write filename of your digit image or r for a random number: r
 Integer value for cut-off parameter k: 10

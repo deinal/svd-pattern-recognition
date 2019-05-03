@@ -1,0 +1,31 @@
+
+Each file 'digit?.mat' contains the training set of the particular
+digit. When you load the file into Matlab you get one variable D with
+size n x m , where n varies (it's of the order of thousands) and
+m=28*28=784. 
+
+Note that if you want to follow the notation of the assigment paper
+transpose of D should be used; in Matlab: 
+	  
+	  D=D'; 
+
+Now every column in D is one single image presented as a vector. To
+visualize them as 2D images use the Matlab reshape function. Thus, to
+extract the 10th image from the matrix presenting digit '4' use the
+commands
+
+	load digit4.mat;
+	D=D';
+	mi=28;
+	im=reshape(D(:,10),mi,mi);
+	imagesc(im);
+
+
+The data is from the NIST web page 
+http://yann.lecun.com/exdb/mnist/
+
+Matlab script that converts the data to Matlab format is at the
+address http://www.cs.toronto.edu/~hinton/code/converter.m
+
+
+
