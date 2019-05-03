@@ -2,9 +2,9 @@
 disp('Welcome! This is the pattern recignition bot beep boop')
 disp('------------------------------------------------------')
 
-% Check i U exist in base workspace
-% Initialize loading bar
-% Load training data
+% - Check i U exist in base workspace
+% - Initialize loading bar
+% - Load training data
 ise = evalin('base', 'exist(''U'',''var'') == 1');
 if ~ise
     f = waitbar(0,'Calculating training data...'); 
@@ -23,9 +23,9 @@ usr = input(prompt, 's');
 prompt = 'Integer value for cut-off parameter k: ';
 k = input(prompt);
 
-% Handling user input
-% Either recognize digit in mnist test data or a square shaped image file
-% Training data is flipped and rotated, therefore rot90(fliplr(z))
+% - Handling user input
+% - Either recognize digit in mnist test data or a square shaped image file
+% - Training data is flipped and rotated, therefore rot90(fliplr(z))
 if strcmp(usr, 'r')
     loadmnist('t10k-images.idx3-ubyte');
     rng = randi([1 10000]);
@@ -43,7 +43,7 @@ else
 end
 z = reshape(z, 784, 1);
 
-% Find smallest relative residual, ie which is the most similar digit
+% - Find smallest relative residual, ie which is the most similar digit
 r = zeros(1, 10);
 for i = 1:10
     r(1, i) = residual(k, z, U(:, :, i));
