@@ -27,13 +27,14 @@ k = input(prompt);
 % Either recognize digit in mnist test data or a square shaped image file
 % Training data is flipped and rotated, therefore rot90(fliplr(z))
 if strcmp(usr, 'r')
+    addpath(genpath('/testdata/'));
     loadmnist('t10k-images.idx3-ubyte');
     rng = randi([1 10000]);
     z = ans(:, rng);
     dispimage(z)
     z = rot90(fliplr(reshape(z, 28, 28)));
 else
-    addpath(genpath('/testdata/'));
+    addpath(genpath('/../run/'));
     z = imagematrix(usr);
     if z == 0 
         return
