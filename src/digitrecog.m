@@ -1,57 +1,61 @@
+function output = digitrecog(usr, k, display)
+%{
+usr: string filename of image or r for random digit
+k: integer cut-off parameter
+display: bool if function should display interpreted image
 
-disp('Welcome! This is the pattern recignition bot beep boop')
-disp('------------------------------------------------------')
+output: predicted number and relative residual
+%}
 
 % Check i U exist in base workspace
 % Initialize loading bar
 % Load training data
 ise = evalin('base', 'exist(''U'',''var'') == 1');
 if ~ise
-    f = waitbar(0,'Calculating training data...'); 
+    f = waitbar(0,'Calculating training data...');
     U = zeros(784, 784, 10);                                
     for i = 1:10
         file = ['trainingdata/digit' num2str(i-1) '.mat'];  
         U(:, :, i) = svddigit(file);
         waitbar(i/10,f,'Calculating training data...')
     end
+    assignin('base', 'U', U)
     close(f)
 end
-
-prompt = 'Write filename of your digit image or r for a random number: ';
-usr = input(prompt, 's');
-
-prompt = 'Integer value for cut-off parameter k: ';
-k = input(prompt);
 
 % Handling user input
 % Either recognize digit in mnist test data or a square shaped image file
 % Training data is flipped and rotated, therefore rot90(fliplr(z))
 if strcmp(usr, 'r')
-    addpath(genpath('/testdata/'));
-    loadmnist('t10k-images.idx3-ubyte');
+    addpath('./testdata/');
+    loadmnist('./testdata/t10k-images.idx3-ubyte');
     rng = randi([1 10000]);
     z = ans(:, rng);
-    dispimage(z)
+    if display
+        dispimage(z)
+    end
     z = rot90(fliplr(reshape(z, 28, 28)));
 else
-    addpath(genpath('/../run/'));
-    z = imagematrix(usr);
+    addpath('./../run/');
+    z = imagematrix(['./../run/', num2str(usr)]);
     if z == 0 
         return
     end
-    imshow(mat2gray(z), 'InitialMagnification', 'fit')
+    if display
+        imshow(mat2gray(z), 'InitialMagnification', 'fit')
+    end
     z = rot90(fliplr(z));
 end
 z = reshape(z, 784, 1);
 
 % Find smallest relative residual, ie which is the most similar digit
 r = zeros(1, 10);
+U = evalin('base', 'U');
 for i = 1:10
     r(1, i) = residual(k, z, U(:, :, i));
 end
 minimum = min(r);
-disp(['Relative residual = ', num2str(minimum)])
-disp(['Predicted number = ', num2str(find(r==minimum)-1)])
+number = find(r==minimum)-1;
 
 function imdata = imagematrix(filename)
     %{
@@ -105,4 +109,7 @@ function dispimage(z)
     im = reshape(z, mi, mi);
     im = mat2gray(im);
     imshow(im, 'InitialMagnification', 'fit')
+end
+
+output = [number, minimum];
 end
