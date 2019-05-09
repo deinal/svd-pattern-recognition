@@ -1,0 +1,13 @@
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.log
+*.out
+*.toc
+
+## Bibliography auxiliary files (bibtex):
+*.bbl
+*.blg
+
+## Build tool auxiliary files:
+*.synctex.gz
+*.synctex.gz(busy)
