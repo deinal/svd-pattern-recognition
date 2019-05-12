@@ -1,11 +1,13 @@
 # Pattern recognition using singular value decomposition
 
+Source code is under *src* and my images are in *run*. Paper on the topic is report.pdf, produced using LaTeX in the *report* folder.
+
 ## Abstract
 
 *This paper presents a linear algebra method for pattern recognition.
 Singular value decomposition is used to distinguish single handwritten
 digits. I implement a method for giving test images to the program and
-examine the goodness of recognition when accounting for dierent number
+examine the goodness of recognition when accounting for different number
 of variations in the training data.*
 
 ## Run in MATLAB command window: 
@@ -61,7 +63,7 @@ And this is how my pattern recognition program interprets it so that it can be c
 
 ![alt text](https://raw.githubusercontent.com/hd4niel/SVD-pattern-recognition/master/run/output7.png "Interpreted digit 7")
 
-Now graphing relative residual vs parameter k:
+Now plotting relative residual vs parameter k:
 ```
 >> main
 Welcome! This is the pattern recignition bot beep boop
