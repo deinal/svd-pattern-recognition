@@ -1,6 +1,6 @@
 # Pattern recognition using singular value decomposition
 
-Source code is under *src* and my images are in *run*. Paper on the topic is report.pdf, produced using LaTeX in the *report* folder.
+Source code is under *src* and my images are in *run*. The document report.pdf is my paper on the topic, produced using LaTeX in the *report* folder.
 
 ## Abstract
 
