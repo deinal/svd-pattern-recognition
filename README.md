@@ -11,7 +11,9 @@ examine the goodness of recognition when accounting for different number
 of variations in the training data.*
 
 ## Run in MATLAB command window: 
-**Go to src/**
+**Go to *src***
+
+**>> cd [your-path-to-svd]/SVD-pattern-recognition-master/src/**
 
 **Run main.m**
 

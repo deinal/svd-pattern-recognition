@@ -91,9 +91,12 @@ The training data is for some reason flipped left to right and rotated countercl
 \verb|z = rot90(fliplr(reshape(z, 28, 28)))|. Then at the heart of the program lies the calculation of the residual and that can be written as a one-liner:\\ 
 \verb|r = norm((eye(784, 784) - U(:, 1:k)*U(:, 1:k)')*z)/norm(z)|.
 
-This program is compiled by opening the \textit{src} folder in MATLAB and running \textit{main.m} by pressing run or typing main in the MATLAB command window. The program can do two things, either graph relative residual values up to a given value k, or try to identify a digit. It can work with images which must be placed in the \textit{run} folder and the requirements for them are that they must be square shaped, have a white (rgb: [255, 255, 255]) background and the digit itself is black (rgb: [0, 0, 0]). There are three examples in the run folder of different size. Other than that the program gives you the option to test an arbitrary image from the test file \textit{src/testdata/t10k-images-idx3-ubyte.gz} \cite{nistdata}. The test digits are converted using \textit{src/testdata/loadmnist.m} \cite{loadmnist}.
+This program is executed by opening the \textit{src} folder in MATLAB and running \textit{main.m} by pressing run or typing main in the MATLAB command window. The program can do two things, either graph relative residual values up to a given value k, or try to identify a digit. It can work with images which must be placed in the \textit{run} folder and the requirements for them are that they must be square shaped, have a white (rgb: [255, 255, 255]) background and the digit itself is black (rgb: [0, 0, 0]). There are three examples in the run folder of different size. Other than that the program gives you the option to test an arbitrary image from the test file \textit{src/testdata/t10k-images-idx3-ubyte.gz} \cite{nistdata}. The test digits are converted using \textit{src/testdata/loadmnist.m} \cite{loadmnist}.
 
-All of my test images are recognized correctly by the program even at low values of k. For example to test it for the digit seven:
+All of my test images are recognized correctly by the program even at low values of k. For example to test it for the digit seven, first open \textit{src} as current folder and then run the program:
+\begin{verbatim}
+>> cd [your-path-to-svd]/SVD-pattern-recognition-master/src/
+\end{verbatim}
 \begin{verbatim}
 >> main
 Welcome! This is the pattern recignition bot beep boop

@@ -13,7 +13,8 @@ output: predicted number and relative residual
 ise = evalin('base', 'exist(''U'',''var'') == 1');
 if ~ise
     f = waitbar(0,'Calculating training data...');
-    U = zeros(784, 784, 10);                                
+    U = zeros(784, 784, 10);   
+    addpath('./trainingdata/');
     for i = 1:10
         file = ['trainingdata/digit' num2str(i-1) '.mat'];  
         U(:, :, i) = svddigit(file);
